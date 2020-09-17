@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.devsuperiornoelen.dsresearch.entities.enums.Platform;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity //you are saying that all objects of type genre, are being monitorateds for JBA. 
 @Table(name = "tb_game")//   naming the table on db
 public class Game implements Serializable{
@@ -26,9 +27,12 @@ public class Game implements Serializable{
 	private String title;
 	private Platform platform;
 	//CHAVE ESTRANGEIRA
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "genre_id") //ESPECIIFCAR NOME DO CAMPO QUE VAI SER  A CHAVE ESTRANGEIRA
 	private Genre genre;
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "game")
 	private List<Record> records = new ArrayList<>();
 	public Game() {
