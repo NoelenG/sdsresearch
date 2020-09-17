@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.devsuperiornoelen.dsresearch.GameDTO;
+import com.devsuperiornoelen.dsresearch.dto.GameDTO;
 import com.devsuperiornoelen.dsresearch.entities.Game;
 import com.devsuperiornoelen.dsresearch.repositories.GameRepository;
 import com.devsuperiornoelen.dsresearch.services.GameService;

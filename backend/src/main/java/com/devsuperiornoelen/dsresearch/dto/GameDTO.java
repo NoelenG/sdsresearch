@@ -1,4 +1,4 @@
-package com.devsuperiornoelen.dsresearch;
+package com.devsuperiornoelen.dsresearch.dto;
 
 import java.io.Serializable;
 
