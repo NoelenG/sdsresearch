@@ -1,11 +1,23 @@
 package com.devsuperiornoelen.dsresearch.repositories;
 
+import java.time.Instant;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.devsuperiornoelen.dsresearch.entities.Game;
 import com.devsuperiornoelen.dsresearch.entities.Record;
 @Repository
-public interface RecordRepository extends JpaRepository<Record, Long> {  //configuções de acesso ao dados, camada de acesso ao dados,  objetos responsáveis por acessar os dados
+public interface RecordRepository extends JpaRepository<Record, Long> {
+	/*@Query("SELECT obj FROM Record obj WHERE "
+			+ "(:min IS NULL OR obj.moment >= :min) AND "
+			+ "(:max IS NULL OR obj.moment <= :max)")*/
+	@Query("SELECT obj FROM Record obj WHERE "
+			+ "(coalesce(:min, null)IS NULL OR obj.moment >= :min) AND "
+			+ "(coalesce(:max, null)IS NULL OR obj.moment <= :max)")
+	Page<Record> findByMoments(Instant min, Instant max, Pageable pageable);  //configuções de acesso ao dados, camada de acesso ao dados,  objetos responsáveis por acessar os dados
 	
 }
